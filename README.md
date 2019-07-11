@@ -10,6 +10,7 @@
 * Get all users
 * Get user by id
 * Delete user by id
+* Update User
 
 ```
 public interface UserDAO extends JpaRepository<User,Integer>{
@@ -35,6 +36,7 @@ public interface UserDAO extends JpaRepository<User,Integer>{
 * Get user by id
 * Delete user by id
 ```
+package com.naresh.bankingappspringdata.controller;
 
 import java.util.List;
 
@@ -43,6 +45,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -62,6 +65,13 @@ public class UserController {
 	public @ResponseBody void register(@RequestBody User user) {
 		System.out.println("UserController->save");
 		userService.registerUser(user);
+	}
+	
+
+	@PutMapping("/{id}")
+	public @ResponseBody void update(@PathVariable("id") Integer id,@RequestBody User user) {
+		System.out.println("UserController->update" + id);
+		userService.update(user);
 	}
 
 	@GetMapping()
