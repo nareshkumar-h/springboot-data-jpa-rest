@@ -25,7 +25,8 @@ public interface UserDAO extends JpaRepository<User,Integer>{
 	@Query("delete from User where id = :userId")
 	void delete(@Param("userId") Integer id);
 
-}```
+}
+```
 
 #### Task 2: Create RestController for User API
 * Register User
@@ -33,7 +34,6 @@ public interface UserDAO extends JpaRepository<User,Integer>{
 * Get user by id
 * Delete user by id
 ```
-package com.naresh.bankingappspringdata.controller;
 
 import java.util.List;
 
