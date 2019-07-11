@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.naresh.bankingappspringdata.dao.UserDAO;
+import com.naresh.bankingappspringdata.exception.ServiceException;
 import com.naresh.bankingappspringdata.model.User;
 
 @Service
@@ -15,7 +16,7 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDAO userDAO;// = new UserDAO();
-	
+
 	@Transactional
 	public void registerUser(User user) {
 		userDAO.save(user);
@@ -25,12 +26,18 @@ public class UserServiceImpl implements UserService {
 	public List<User> list() {
 		return userDAO.list();
 	}
-	
+
 	@Transactional
 	public User findOne(Integer id) {
-		return userDAO.findOne(id);
+		User user = null;
+
+		user = userDAO.findOne(id);
+		if (user == null) {
+			throw new ServiceException("User id not found");
+		}
+		return user;
 	}
-	
+
 	@Transactional
 	public void delete(Integer id) {
 		userDAO.delete(id);
