@@ -7,14 +7,14 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.naresh.bankingappspringdata.dao.IUserDAO;
+import com.naresh.bankingappspringdata.dao.UserDAO;
 import com.naresh.bankingappspringdata.model.User;
 
 @Service
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	private IUserDAO userDAO;// = new UserDAO();
+	private UserDAO userDAO;// = new UserDAO();
 	
 	@Transactional
 	public void registerUser(User user) {
@@ -34,6 +34,11 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public void delete(Integer id) {
 		userDAO.delete(id);
+	}
+
+	@Override
+	public void update(User user) {
+		userDAO.save(user);
 	}
 
 }
