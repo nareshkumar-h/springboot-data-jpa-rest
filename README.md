@@ -22,6 +22,7 @@ public interface UserDAO extends JpaRepository<User,Integer>{
 	@Query("select u from User u where u.id = :userId")
 	User findOne(@Param("userId") Integer id);
 
+	@Modifying
 	@Query("delete from User where id = :userId")
 	void delete(@Param("userId") Integer id);
 
