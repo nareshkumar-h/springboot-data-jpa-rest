@@ -35,6 +35,13 @@ public class UserController {
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
+	@PostMapping("/login")
+	public ResponseEntity<?> login(@RequestBody User user) {
+		System.out.println("UserController->login");
+		User searchUser = userService.login(user);
+		return new ResponseEntity<>(searchUser, HttpStatus.OK);
+	}
+	
 
 	@PutMapping("/{id}")
 	public @ResponseBody void update(@PathVariable("id") Integer id,@RequestBody User user) {

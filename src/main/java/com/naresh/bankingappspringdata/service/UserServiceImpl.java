@@ -48,4 +48,10 @@ public class UserServiceImpl implements UserService {
 		userDAO.save(user);
 	}
 
+	@Override
+	public User login(User user) {
+		User userResult = userDAO.findByEmailAndPassword(user.getEmail(), user.getPassword());
+		return userResult;
+	}
+
 }
